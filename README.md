@@ -52,51 +52,153 @@ o	Flip the original image vertically and display it.
 o	Save the final modified image to your local directory.
 
 
-##### Program:
-### Developed By:
-### Register Number: 
-
-
-## Output:
+## Program:
+#### Developed By: LOKESH KUMAR P
+#### Register Number: 212222240054
 
 ### i)Read and Display an Image
 
-<br>
-<br>
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image_path = 'dog.jpg' 
+image = cv2.imread(image_path)
+plt.figure(figsize=(10, 8))
+plt.subplot(3, 3, 1)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Original Image')
+plt.axis('off')
+```
+![image](https://github.com/user-attachments/assets/67ec6190-7635-4614-a92a-7aeda2453ec0)
+
 
 ### ii)Draw Shapes and Add Text
 
-<br>
-<br>
+```
+image_with_shapes = image.copy()
+image_with_shapes.shape
+```
+![image](https://github.com/user-attachments/assets/28649ac1-732c-40bd-97f2-dd1a95fcfdbf)
+
+```
+cv2.line(image_with_shapes, (0, 0), (332, 300), (255, 0, 0), 2)  # Line
+cv2.circle(image_with_shapes, (332 // 2, 300 // 2), 50, (0, 255, 0), 2)  # Circle
+cv2.rectangle(image_with_shapes, (50, 50), (150, 150), (0, 0, 255), 2)  # Rectangle
+cv2.putText(image_with_shapes, 'OpenCV', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)  # Text
+
+plt.subplot(3, 3, 2)
+plt.imshow(cv2.cvtColor(image_with_shapes, cv2.COLOR_BGR2RGB))
+plt.title('Image with Shapes and Text')
+plt.axis('off')
+```
+
+![image](https://github.com/user-attachments/assets/257ec635-0eb4-4617-9a0a-5658932e9f24)
+
 
 ### iii)Image Color Conversion
+```
+# Convert to HSV
+image_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+# Convert to GRAY
+image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# Convert to YCrCb
+image_ycrcb = cv2.cvtColor(image, cv2.COLOR_BGR2YCrCb)
+# Convert HSV back to RGB
+image_rgb_from_hsv = cv2.cvtColor(image_hsv, cv2.COLOR_HSV2BGR)
 
-<br>
-<br>
+
+plt.subplot(3, 3, 3)
+plt.imshow(cv2.cvtColor(image_hsv, cv2.COLOR_BGR2RGB))
+plt.title('Image in HSV')
+plt.axis('off')
+
+plt.subplot(3, 3, 4)
+plt.imshow(image_gray, cmap='gray')
+plt.title('Image in GRAY')
+plt.axis('off')
+
+plt.subplot(3, 3, 5)
+plt.imshow(cv2.cvtColor(image_ycrcb, cv2.COLOR_BGR2RGB))
+plt.title('Image in YCrCb')
+plt.axis('off')
+
+plt.subplot(3, 3, 6)
+plt.imshow(cv2.cvtColor(image_rgb_from_hsv, cv2.COLOR_BGR2RGB))
+plt.title('HSV to RGB')
+plt.axis('off')
+```
+
+![image](https://github.com/user-attachments/assets/79e8273f-5724-46da-8181-35704707f85f)
 
 ### iv)Access and Manipulate Image Pixels
-<br>
-<br>
+
+```
+pixel_value = image[100, 100]  # Access pixel value at (100, 100)
+print(f'Pixel value at (100, 100): {pixel_value}')
+image[200, 200] = [255, 255, 255]  # Set pixel color at (200, 200) to white
+
+# Display updated image with manipulated pixels
+plt.subplot(3, 3, 7)
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+plt.title('Image with Manipulated Pixels')
+plt.axis('off')
+```
+
+![image](https://github.com/user-attachments/assets/97830fbe-635c-4203-b250-6da377cf43a1)
 
 ### v)Image Resizing
-<br>
-<br>
+```
+resized_image = cv2.resize(image, (332 // 2,300 // 2))
+plt.subplot(3, 3, 8)
+plt.imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))
+plt.title('Resized Image')
+plt.axis('off')
+```
+![image](https://github.com/user-attachments/assets/1ada6194-39f2-473f-99bc-d9b86edc6f2c)
+
 
 ### vi)Image Cropping
-<br>
-<br>
+```
+cropped_image = image[50:150, 50:150]
+plt.subplot(3, 3, 9)
+plt.imshow(cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB))
+plt.title('Cropped Image')
+plt.axis('off')
+
+```
+![image](https://github.com/user-attachments/assets/172da625-36fa-4907-b20b-0d0b64f7c4d4)
+
 
 ### vii)Image Flipping
-<br>
-<br>
+```
+flipped_image_horizontal = cv2.flip(image, 1)  # Horizontal flip
+flipped_image_vertical = cv2.flip(image, 0)    # Vertical flip
+
+plt.figure(figsize=(10, 8))
+plt.subplot(1, 2, 1)
+plt.imshow(cv2.cvtColor(flipped_image_horizontal, cv2.COLOR_BGR2RGB))
+plt.title('Flipped Horizontally')
+plt.axis('off')
+
+plt.subplot(1, 2, 2)
+plt.imshow(cv2.cvtColor(flipped_image_vertical, cv2.COLOR_BGR2RGB))
+plt.title('Flipped Vertically')
+plt.axis('off')
+```
+
+![image](https://github.com/user-attachments/assets/e5697fdf-4625-4072-9f6e-cba10ded7423)
+
+
 
 ### viii)Write and Save the Modified Image
-<br>
-<br>
+```
+output_path = 'modified_image.jpg'
+cv2.imwrite(output_path, image)
 
+plt.show()
 
-
-
+```
 
 
 ## Result:
